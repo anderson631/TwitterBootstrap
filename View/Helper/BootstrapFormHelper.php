@@ -3,21 +3,13 @@ App::uses('FormHelper', 'View/Helper');
 App::uses('Set', 'Utility');
 
 class BootstrapFormHelper extends FormHelper {
-
 	const FORM_SEARCH = 'form-search';
-
 	const FORM_INLINE = 'form-inline';
-
 	const FORM_HORIZONTAL = 'form-horizontal';
-
 	const CLASS_GROUP = 'control-group';
-
 	const CLASS_INPUTS = 'controls';
-
 	const CLASS_ACTION = 'form-actions';
-
 	const CLASS_BUTTON = 'btn';
-
 	const CLASS_ERROR = 'error';
 
 	public $helpers = array('Html' => array('className' => 'TwitterBootstrap.BootstrapHtml'));
@@ -244,7 +236,7 @@ class BootstrapFormHelper extends FormHelper {
 
 		$input = parent::input($fieldName, $options);
 		$divControls = $this->_extractOption('divControls', $options, self::CLASS_INPUTS);
-		$input = $hidden . ((false === $div) ? $input : $this->Html->div($divControls, $input));
+		$input = $hidden . ((false === $div OR $divControls === false) ? $input : $this->Html->div($divControls, $input));
 
 		$out = $before . $label . $between . $input;
 		return (false === $div) ? $out : $this->Html->div($div, $out);
